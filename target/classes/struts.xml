@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+
+    <constant name="struts.devMode" value="true" />
+    <constant name="struts.custom.i18n.resources" value="global" />
+    <constant name="struts.xwork.chaining.copyMessages" value="true" />
+    <constant name="struts.convention.default.parent.package" value="default"/>
+
+    <package name="default" namespace="/" extends="struts-default">
+        <interceptors>
+            <interceptor name="authentication"
+                         class="struts2.common.interceptor.AuthenticationInterceptor" />
+            <interceptor-stack name="authStack">
+                <interceptor-ref name="authentication" />
+                <interceptor-ref name="defaultStack"/>
+            </interceptor-stack>
+        </interceptors>
+
+        <global-results>
+            <result name="login" >/views/login.jsp</result>
+            <result name="access-denny">/views/common/access-denny.jsp</result>
+        </global-results>
+
+    </package>
+
+</struts>
